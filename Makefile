@@ -54,8 +54,8 @@ load-test: ## ⌛️ Load Test
 load-test-dashboard: ## ⌛️ Load Test with visualizing the results in xk6 dashboard https://github.com/grafana/xk6-dashboard
 	@echo -e "----\e[34mStart $@\e[0m----" || true 
 	@docker pull ghcr.io/grafana/xk6-dashboard
-	@docker run --rm -p 5665:5665 -v /workspaces/api-testing/testing/load-test:/src ghcr.io/grafana/xk6-dashboard:0.6.1 run \
-	    --out 'dashboard=period=2s' \
+	@docker run --rm -p 5665:5665 -v /workspaces/api-testing/testing/load-test:/src ghcr.io/grafana/xk6-dashboard:latest run \
+	    --out 'web-dashboard=period=2s' \
 		-e K6_ENV=local \
 		-e CUSTOMERS_API_URL=http://host.docker.internal:8000/customers \
 		/src/customers-service.js
